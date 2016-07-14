@@ -13,7 +13,7 @@ KeyboardTeleop::KeyboardTeleop( struct termios &cooked, struct termios &raw, int
 	raw_( raw ),
 	kfd_ ( kfd )
 {
-	cmd_vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/cmd_vel", 1, true);
+  cmd_vel_pub_ = nh_.advertise<geometry_msgs::Twist>("cmd_vel", 1, true);
 	readParams(nh_);
 }
 
