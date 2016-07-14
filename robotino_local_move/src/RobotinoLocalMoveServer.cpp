@@ -10,8 +10,7 @@
 #include <tf/transform_datatypes.h>
 
 RobotinoLocalMoveServer::RobotinoLocalMoveServer():
-	nh_("~"),
-	server_ ( nh_, "/local_move",
+  server_ ( nh_, "local_move",
 		boost::bind( &RobotinoLocalMoveServer::execute, this, _1 ), false ),
 	curr_x_( 0.0 ),
 	curr_y_( 0.0 ),
@@ -28,10 +27,10 @@ RobotinoLocalMoveServer::RobotinoLocalMoveServer():
 	start_phi_( 0.0 ),
 	odom_set_(false )
 {
-	odometry_sub_ = nh_.subscribe( "/odom", 1,
+  odometry_sub_ = nh_.subscribe( "odom", 1,
 			&RobotinoLocalMoveServer::odomCallback, this );
 
-	cmd_vel_pub_ = nh_.advertise<geometry_msgs::Twist>("/cmd_vel", 1 );
+  cmd_vel_pub_ = nh_.advertise<geometry_msgs::Twist>("cmd_vel", 1 );
 
 	state_ = Idle;
 
