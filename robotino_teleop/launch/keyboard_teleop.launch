@@ -1,6 +1,6 @@
 <launch>
 	<!-- Keyboard Teleop Node -->
-	<node pkg="robotino_teleop" type="keyboard_teleop_node"
+  <node ns="c3po" pkg="robotino_teleop" type="keyboard_teleop_node"
 		name="keyboard_teleop_node" output="screen" >
 				
 		<!-- Scale -->

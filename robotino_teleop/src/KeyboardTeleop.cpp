@@ -8,7 +8,6 @@
 #include "KeyboardTeleop.h"
 
 KeyboardTeleop::KeyboardTeleop( struct termios &cooked, struct termios &raw, int &kfd ):
-	nh_("~"),
 	cooked_( cooked ),
 	raw_( raw ),
 	kfd_ ( kfd )

@@ -6,7 +6,7 @@
 	</node>
 	
 	<!-- Joystick Teleop Node -->
-	<node pkg="robotino_teleop" type="joystick_teleop_node"
+  <node ns="c3po" pkg="robotino_teleop" type="joystick_teleop_node"
 		name="joystick_teleop_node" output="screen" >
 		<!-- Axes -->
 		<param name="axis_linear_x" value="1" type="int" />
