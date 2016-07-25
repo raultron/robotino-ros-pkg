@@ -20,6 +20,7 @@ public:
 
 private:
 	ros::NodeHandle nh_;
+  ros::NodeHandle nh_private_;
 
 	ros::Publisher cmd_vel_pub_;
 	ros::Subscriber joy_sub_;
