@@ -31,6 +31,7 @@ public:
 
 private:
 	ros::NodeHandle nh_;
+  ros::NodeHandle nh_private_;
 
 	ros::Subscriber odometry_sub_;
 

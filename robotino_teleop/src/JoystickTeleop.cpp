@@ -7,7 +7,7 @@
 
 #include "JoystickTeleop.h"
 
-JoystickTeleop::JoystickTeleop()
+JoystickTeleop::JoystickTeleop(): nh_("~")
 {
   cmd_vel_pub_ = nh_.advertise<geometry_msgs::Twist>("cmd_vel", 1, true);
   joy_sub_ = nh_.subscribe("joy", 1, &JoystickTeleop::joyCallback, this);

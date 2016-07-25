@@ -25,7 +25,8 @@ RobotinoLocalMoveServer::RobotinoLocalMoveServer():
 	start_x_( 0.0 ),
 	start_y_( 0.0 ),
 	start_phi_( 0.0 ),
-	odom_set_(false )
+  odom_set_(false ),
+  nh_private_("~")
 {
   odometry_sub_ = nh_.subscribe( "odom", 1,
 			&RobotinoLocalMoveServer::odomCallback, this );
@@ -34,7 +35,7 @@ RobotinoLocalMoveServer::RobotinoLocalMoveServer():
 
 	state_ = Idle;
 
-	readParameters( nh_ );
+  readParameters( nh_private_ );
 }
 
 RobotinoLocalMoveServer::~RobotinoLocalMoveServer()
