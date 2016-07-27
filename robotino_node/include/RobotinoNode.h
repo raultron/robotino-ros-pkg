@@ -36,6 +36,7 @@ public:
 
 private:
 	ros::NodeHandle nh_;
+  ros::NodeHandle nh_private_;
 
 	std::string hostname_;
 	double max_linear_vel_, min_linear_vel_, max_angular_vel_, min_angular_vel_;

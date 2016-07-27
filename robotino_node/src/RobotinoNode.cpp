@@ -8,16 +8,16 @@
 #include "RobotinoNode.h"
 
 RobotinoNode::RobotinoNode()
-	: nh_("~")
+  : nh_private_("~")
 {
-	nh_.param<std::string>("hostname", hostname_, "172.26.1.1" );
-	nh_.param<double>("max_linear_vel", max_linear_vel_, 0.2 );
-	nh_.param<double>("min_linear_vel", min_linear_vel_, 0.05 );
-	nh_.param<double>("max_angular_vel", max_angular_vel_, 1.0 );
-	nh_.param<double>("min_angular_vel", min_angular_vel_, 0.1 );
+  nh_private_.param<std::string>("hostname", hostname_, "172.26.1.1" );
+  nh_private_.param<double>("max_linear_vel", max_linear_vel_, 0.2 );
+  nh_private_.param<double>("min_linear_vel", min_linear_vel_, 0.05 );
+  nh_private_.param<double>("max_angular_vel", max_angular_vel_, 1.0 );
+  nh_private_.param<double>("min_angular_vel", min_angular_vel_, 0.1 );
 
-	distances_clearing_pub_ = nh_.advertise<sensor_msgs::PointCloud>("/distance_sensors_clearing", 1, true);
-	joint_states_pub_= nh_.advertise<sensor_msgs::JointState>("/robotino_joint_states", 1, false);
+  distances_clearing_pub_ = nh_.advertise<sensor_msgs::PointCloud>("distance_sensors_clearing", 1, true);
+  joint_states_pub_= nh_.advertise<sensor_msgs::JointState>("robotino_joint_states", 1, false);
 
 	com_.setName( "RobotinoNode" );
 
