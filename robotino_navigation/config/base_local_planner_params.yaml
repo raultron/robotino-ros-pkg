@@ -4,8 +4,8 @@ RobotinoLocalPlanner:
   max_rotation_vel: 1.0
   min_rotation_vel: 0.3
 
-  yaw_goal_tolerance: 0.05
-  xy_goal_tolerance: 0.10
+  yaw_goal_tolerance: 0.04
+  xy_goal_tolerance: 0.05
   
   heading_lookahead: 0.3
   num_window_points: 10
