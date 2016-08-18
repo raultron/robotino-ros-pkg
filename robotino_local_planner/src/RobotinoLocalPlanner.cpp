@@ -189,7 +189,7 @@ namespace robotino_local_planner
     double odom_angle = tf::getYaw(base_odom_.pose.orientation);
     double ref_angle = ::atan2(y,x);
 
-    rotation = ::atan2(sin(ref_angle-odom_angle), cos(ref_angle-odom_angle));
+    double rotation = ::atan2(sin(ref_angle-odom_angle), cos(ref_angle-odom_angle));
 
     //double rotation = (::atan2(y,x) - tf::getYaw(base_odom_.pose.orientation ) );
 
