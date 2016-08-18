@@ -186,9 +186,14 @@ namespace robotino_local_planner
 		double y = rotate_goal.pose.position.y - base_odom_.pose.position.y;
 
 		// Calculate the rotation between the current odom and the vector created above
-		double rotation = (::atan2(y,x) - tf::getYaw(base_odom_.pose.orientation ) );
+    double odom_angle = tf::getYaw(base_odom_.pose.orientation);
+    double ref_angle = ::atan2(y,x);
 
-		rotation = mapToMinusPIToPI( rotation );
+    rotation = ::atan2(sin(ref_angle-odom_angle), cos(ref_angle-odom_angle));
+
+    //double rotation = (::atan2(y,x) - tf::getYaw(base_odom_.pose.orientation ) );
+
+    //rotation = mapToMinusPIToPI( rotation );
 
 		if( fabs( rotation ) < yaw_goal_tolerance_ )
 		{
