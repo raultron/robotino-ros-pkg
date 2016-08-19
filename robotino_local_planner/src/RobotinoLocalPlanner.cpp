@@ -195,6 +195,9 @@ namespace robotino_local_planner
 
     //rotation = mapToMinusPIToPI( rotation );
 
+    ROS_DEBUG("odom_angle, ref_angle, Rotation: %f, %f, %f", odom_angle, ref_angle, rotation);
+
+
 		if( fabs( rotation ) < yaw_goal_tolerance_ )
 		{
 			state_ = Moving;
@@ -240,10 +243,16 @@ namespace robotino_local_planner
 		double x = move_goal.pose.position.x - base_odom_.pose.position.x;
 		double y = move_goal.pose.position.y - base_odom_.pose.position.y;
 
-		// Calculate the rotation between the current odom and the vector created above
-		double rotation = (::atan2(y,x) - tf::getYaw(base_odom_.pose.orientation ) );
+    // Calculate the rotation between the current odom and the vector created above
+    double odom_angle = tf::getYaw(base_odom_.pose.orientation);
+    double ref_angle = ::atan2(y,x);
 
-		rotation = mapToMinusPIToPI( rotation );
+    double rotation = ::atan2(sin(ref_angle-odom_angle), cos(ref_angle-odom_angle));
+
+		// Calculate the rotation between the current odom and the vector created above
+    //double rotation = (::atan2(y,x) - tf::getYaw(base_odom_.pose.orientation ) );
+
+    //rotation = mapToMinusPIToPI( rotation );
 
 		cmd_vel.angular.z = calRotationVel( rotation );
 
@@ -302,8 +311,15 @@ namespace robotino_local_planner
 			return false;
 		}
 
-		double rotation = tf::getYaw( rotate_goal.pose.orientation ) -
-				tf::getYaw( base_odom_.pose.orientation );
+
+    // Calculate the rotation between the current odom and the vector created above
+    double odom_angle = tf::getYaw(base_odom_.pose.orientation);
+    double ref_angle = tf::getYaw(rotate_goal.pose.orientation);
+
+    double rotation = ::atan2(sin(ref_angle-odom_angle), cos(ref_angle-odom_angle));
+
+    //double rotation = tf::getYaw( rotate_goal.pose.orientation ) -
+    //		tf::getYaw( base_odom_.pose.orientation );
 
 		if( fabs( rotation ) < yaw_goal_tolerance_ )
 		{
